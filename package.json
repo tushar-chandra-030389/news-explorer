@@ -1,0 +1,12 @@
+{
+  "name": "news-explorer",
+  "version": "0.0.1",
+  "description": "A backend and frontend application to explore news from newsapi.org",
+  "main": "index.js",
+  "author": "Tushar Chandra",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
