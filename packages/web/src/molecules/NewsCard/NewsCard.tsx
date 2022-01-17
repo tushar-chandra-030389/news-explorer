@@ -1,3 +1,6 @@
+import { useMemo } from "react";
+import { formatDateYYYYMMDD } from "utils/formatter";
+
 type Props = {
   author: string;
   description: string;
@@ -9,6 +12,12 @@ type Props = {
 
 export default function NewsCard(props: Props) {
   const { author, description, publishedAt, title, url, urlToImage } = props;
+
+  const date = useMemo(
+    () => formatDateYYYYMMDD(new Date(publishedAt)),
+    [publishedAt]
+  );
+
   const handleRedirect = () => {
     window.open(url, "_blank")?.focus();
   };
@@ -32,7 +41,7 @@ export default function NewsCard(props: Props) {
         </div>
         <div className="flex justify-between basis-1/6 mt-1">
           <p className="text-gray-600 text-xs">{author}</p>
-          <p className="text-gray-600 text-xs">{publishedAt}</p>
+          <p className="text-gray-600 text-xs">{date}</p>
         </div>
       </div>
     </div>
