@@ -11,7 +11,6 @@ export type FetchNewsPayload = {
 };
 
 export async function fetchNews(params: FetchNewsPayload, jwt: string) {
-  console.log({ CONFIG });
   const result = await axios.get(`${CONFIG.API_URL}/api/news`, {
     params,
     headers: { Authorization: `Bearer ${jwt}` },
