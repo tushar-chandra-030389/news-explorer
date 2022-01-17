@@ -1,7 +1,9 @@
 import axios from "axios";
 
+import CONFIG from "config";
+
 export async function signUp(email: string, password: string) {
-  const result = await axios.post("http://localhost:3100/signup", {
+  const result = await axios.post(`${CONFIG.API_URL}/signup`, {
     email,
     password,
   });
@@ -10,7 +12,7 @@ export async function signUp(email: string, password: string) {
 }
 
 export async function signIn(email: string, password: string) {
-  const result = await axios.post("http://localhost:3100/signin", {
+  const result = await axios.post(`${CONFIG.API_URL}/signin`, {
     email,
     password,
   });

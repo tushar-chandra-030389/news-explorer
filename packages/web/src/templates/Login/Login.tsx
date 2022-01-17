@@ -9,7 +9,7 @@ export default function Login() {
 
   return (
     <div className="flex justify-center	items-center">
-      <div className="w-full sm:w-96 xl:w-96 h-96 bg-neutral-50 rounded-md mt-20">
+      <div className="w-full sm:w-96 xl:w-96 h-96 bg-backgroundSecondary rounded-md mt-20">
         {isSignIn ? <SignInForm /> : <SignUpForm />}
       </div>
     </div>

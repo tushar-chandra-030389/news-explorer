@@ -1,5 +1,6 @@
 import { useAppDispatch } from "hooks/redux";
 import { logout } from "state/slices/app";
+import Button from "atoms/Button";
 
 export default function LogoutButton() {
   const dispatch = useAppDispatch();
@@ -8,5 +9,5 @@ export default function LogoutButton() {
     dispatch(logout());
   };
 
-  return <div onClick={handleLogout}>Logout</div>;
+  return <Button secondary label="Logout" onClick={handleLogout} />;
 }

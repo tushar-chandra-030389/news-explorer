@@ -15,6 +15,8 @@ import News from "pages/News";
 
 import AuthRoutes from "organisms/AuthRoutes";
 
+import "config";
+
 ReactDOM.render(
   <React.StrictMode>
     <ReduxProvider store={store}>

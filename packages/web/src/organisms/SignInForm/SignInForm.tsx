@@ -1,52 +1,56 @@
-import { useCallback, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TextInput from "atoms/TextInput";
 import Button from "atoms/Button";
 import { useAppDispatch } from "hooks/redux";
 import { ROUTES } from "routes";
-import { triggerSignIn, logout } from "state/slices/app";
+import { triggerSignIn } from "state/slices/app";
+import useFormValues from "hooks/useFormValues";
+
+const formFields = {
+  email: "",
+  password: "",
+};
 
 export default function SignInForm() {
+  const [formValues, updateFieldValue] = useFormValues(formFields);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   const navigateToSignUp = () => {
     navigate(ROUTES.SIGN_UP);
   };
 
-  const handleEmailChange = useCallback(
-    (e) => setEmail(e.target.value),
-    [setEmail]
-  );
-
-  const handlePasswordChange = useCallback(
-    (e) => setPassword(e.target.value),
-    [setPassword]
-  );
-
   const handleSignIn = async () => {
-    const result = await dispatch(triggerSignIn({ email, password }));
+    const result = await dispatch(
+      triggerSignIn({
+        email: formValues["email"] as string,
+        password: formValues["password"] as string,
+      })
+    );
     if (result.payload) {
       navigate(ROUTES.NEWS);
     } else {
-      console.log("Fail");
+      // Handle Login failed
     }
   };
 
   return (
     <div className="flex justify-center	items-center flex-col h-full">
       <div className="w-4/5 mt-2">
-        <TextInput label="Email" value={email} onChange={handleEmailChange} />
+        <TextInput
+          label="Email"
+          name="email"
+          value={formValues["email"] as string}
+          onChange={updateFieldValue}
+        />
       </div>
       <div className="w-4/5 mt-2">
         <TextInput
           label="Password"
           type="password"
-          value={password}
-          onChange={handlePasswordChange}
+          name="password"
+          value={formValues["password"] as string}
+          onChange={updateFieldValue}
         />
       </div>
       <div className="flex justify-center	items-center flex-row w-full mt-10">
